@@ -1,0 +1,19 @@
+# Inference/application settings. Relative paths are relative to the project root.
+model:
+  task: classification
+  architecture: resnet18
+  weights_path: models/model_weights.pth
+  metadata_path: models/model_metadata.json
+  device: cpu            # cpu or cuda (cuda must be available; no silent fallback)
+input:
+  max_file_size_mb: 10   # engineering default, not an industrial standard
+  supported_formats: [jpg, jpeg, png, webp]
+  max_image_pixels: 40000000   # guards against small files that decode to huge images
+  min_dimension: 16
+inference:
+  # Placeholder for software integration only. Choose a threshold from VALIDATION data after
+  # training; do not tune it on the test split. Scores are softmax values, not calibrated.
+  confidence_threshold: 0.5
+storage:
+  database_path: outputs/inspections.db
+  export_directory: outputs/exports

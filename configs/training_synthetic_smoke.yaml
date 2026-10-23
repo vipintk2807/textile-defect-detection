@@ -1,0 +1,26 @@
+# SMOKE-TEST configuration for the SYNTHETIC demo dataset (software demo only, small and fast).
+# Not a real experiment: trains from scratch (no download), tiny images, 3 epochs.
+dataset:
+  manifest_path: data/processed/synthetic_demo/samples.csv
+  images_root: data/synthetic_demo
+model:
+  architecture: resnet18
+  pretrained: false
+  freeze_backbone: false
+preprocessing:
+  resize_size: 72
+  crop_size: 64
+  resize_mode: squash
+augmentation:
+  enabled: true
+training:
+  seed: 7
+  batch_size: 8
+  max_epochs: 3
+  learning_rate: 0.001
+  backbone_learning_rate: 0.001
+  early_stopping_patience: 3
+  device: cpu
+output:
+  directory: outputs/experiments
+  experiment_name: synthetic-smoke

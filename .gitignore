@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.coverage
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Local configuration and secrets
+.env
+*.env
+.streamlit/secrets.toml
+
+# Datasets (never commit; see data/README.md)
+data/raw/
+data/interim/
+data/processed/
+data/external/
+data/synthetic_demo/
+!data/README.md
+
+# Models and generated outputs (never commit weights or experiment results by default)
+*.pth
+*.pt
+*.ckpt
+*.onnx
+models/*
+!models/README.md
+outputs/*
+!outputs/.gitkeep
+*.db
+*.sqlite3
+
+# Editors / OS
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+.ipynb_checkpoints/

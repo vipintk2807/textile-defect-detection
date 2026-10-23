@@ -1,0 +1,41 @@
+# Training configuration (initial experimental settings, not claims about optimal values).
+# Relative paths are relative to the project root. Replace the dataset paths with the output of
+# scripts/prepare_dataset.py for your real dataset.
+dataset:
+  manifest_path: data/processed/YOUR_DATASET_VERSION/samples.csv
+  images_root: data/raw/YOUR_DATASET_FOLDER
+  # class_mapping_path / dataset_info_path default to class_mapping.json and
+  # dataset_manifest.json next to the manifest.
+model:
+  architecture: resnet18
+  pretrained: true               # downloads torchvision ImageNet weights on first use (needs internet)
+  pretrained_weights: IMAGENET1K_V1
+  freeze_backbone: true          # head-only baseline; set false for fine-tuning (uses backbone_learning_rate)
+preprocessing:                   # ResNet-18 ImageNet recipe; recorded into the model metadata
+  resize_size: 256
+  crop_size: 224
+  mean: [0.485, 0.456, 0.406]
+  std: [0.229, 0.224, 0.225]
+  resize_mode: center_crop       # or "squash" for very wide images (compare against baseline)
+augmentation:                    # training split only
+  enabled: true
+  horizontal_flip: true
+  vertical_flip: false
+  rotation_degrees: 0
+  brightness: 0.1
+  contrast: 0.1
+training:
+  seed: 42
+  batch_size: 32
+  max_epochs: 20
+  learning_rate: 0.001
+  backbone_learning_rate: 0.0001
+  weight_decay: 0.0001
+  early_stopping_patience: 5
+  selection_metric: val_macro_f1   # or val_loss; chosen BEFORE looking at test results
+  class_weighting: none            # or balanced (only if class counts justify it)
+  num_workers: 0                   # 0 is safest on Windows
+  device: auto                     # cuda if available, else cpu
+output:
+  directory: outputs/experiments
+  experiment_name: resnet18-baseline

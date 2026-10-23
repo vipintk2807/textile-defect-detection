@@ -1,0 +1,11 @@
+# Runtime dependencies. These are COMPATIBLE-VERSION RANGES, not exact pins: the torch-free parts
+# of the project were verified with Python 3.12 / NumPy 2.4 / Pillow 12.1 / scikit-learn 1.8, but
+# torch, torchvision and streamlit could NOT be installed or run in the build sandbox. After you
+# install and confirm the tests pass, you may freeze exact versions with:  pip freeze > requirements.lock.txt
+numpy>=1.26,<3
+pillow>=10.3,<13
+pyyaml>=6.0,<7
+scikit-learn>=1.4,<2
+torch>=2.2,<3
+torchvision>=0.17,<1
+streamlit>=1.35,<2

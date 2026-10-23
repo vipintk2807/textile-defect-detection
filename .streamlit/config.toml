@@ -1,0 +1,16 @@
+# Streamlit configuration for the local inspection app (values from docs/app theme spec).
+[theme]
+base = "light"
+primaryColor = "#167D8D"
+backgroundColor = "#F4F7FA"
+secondaryBackgroundColor = "#FFFFFF"
+textColor = "#263746"
+font = "sans serif"
+
+[server]
+# Matches 'input.max_file_size_mb' in configs/inference.yaml (the app also enforces its own limit).
+maxUploadSize = 10
+
+[browser]
+# Do not send anonymous usage statistics from this local, privacy-sensitive tool.
+gatherUsageStats = false
